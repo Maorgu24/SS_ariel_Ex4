@@ -43,7 +43,7 @@ void RemoveEdge(pedge head_edge){
     edge **prev = &head_edge;
     while(p){
         *prev = p->next;
-        F(p);
+        free(p);
         p = *prev;
     }
 }

@@ -265,5 +265,5 @@ void ScanfEx4(){
 int main(){
     ScanfEx4();
     DeleteA(&graph_node1);
-    F(graph_node1);
+    free(graph_node1);
 }

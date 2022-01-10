@@ -36,7 +36,7 @@ void ChangeDis(int src, struct GRAPH_NODE_DISTANCE **head, int data){
 
 int DisID(int id, struct GRAPH_NODE_DISTANCE **head){
     struct GRAPH_NODE_DISTANCE **p1 = head;
-    if (id >=48){
+    if(id >=48){
         id = id -'0';
     }
     p1 = &((*p1)->next);
@@ -78,7 +78,7 @@ void DeleteDisA(struct GRAPH_NODE_DISTANCE **head){
     struct GRAPH_NODE_DISTANCE **prev = h1;
     while(p){
         *prev = p->next;
-        F(p);
+        free(p);
         p = *prev;
     }
 }
@@ -137,8 +137,8 @@ int ShortestP(struct GRAPH_NODE_ **head1, int src, int dest,int size){
     }
     int shortPath = DisID(dest,&distance_path);
     DeleteDisA(&distance_path);
-    F(distance_path);
-    F(headCopy);
+    free(distance_path);
+    free(headCopy);
     if(shortPath == 1111111111){
         return GetWeight(head1,src,dest);
     }
@@ -155,7 +155,7 @@ void DeleteDis( struct GRAPH_NODE_DISTANCE ** h,int id){
     while(p){
         if(p->node_num == id){
             *prev = p->next;
-            F(p);
+            free(p);
             p = *prev;
         }
         else{
@@ -227,7 +227,7 @@ int TSP(struct GRAPH_NODE_ **head1, int* node_lst,int size,int sizeH){
         InsertDis2(node_lst_p[i],0,&path);
         TpsShortest(head1,node_lst, &path,size,sizeH);
         DeleteDisA(&path);
-        F(pathP2);
+        free(pathP2);
     }
     if((min == 1111111) || (min == 0)){
         return -1;

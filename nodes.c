@@ -60,7 +60,7 @@ bool DeleteNode( struct GRAPH_NODE_ ** h,int id){
                 RemoveEdge(head);
             }
             delete = True;
-            F(p);
+            free(p);
             p = *prev;
         }
         else{
@@ -89,7 +89,7 @@ void DeleteNodeAll( struct GRAPH_NODE_ ** h,int id){
                         RemoveNode(f);
                     }
                     *prev = p->next;
-                    F(p);
+                    free(p);
                     p = *prev;
                     if(first){
                         (*h2)->edges=p;
@@ -118,10 +118,10 @@ void DeleteNodeAll( struct GRAPH_NODE_ ** h,int id){
             edge **prev = &head_edge;
             while(p){
                 *prev = p->next;
-                F(p);
+                free(p);
                 p = *prev;
             }
-            F(p1);
+            free(p1);
             p1 = *prev1;
         }
         else{

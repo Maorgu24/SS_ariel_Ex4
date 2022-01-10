@@ -193,7 +193,7 @@ void RemoveNode(pnode head_edge){
     node **prev = &head_edge;
     while(p){
         *prev = p->next;
-        F(p);
+        free(p);
         p = *prev;
     }
 }
@@ -226,14 +226,14 @@ void DeleteA( struct GRAPH_NODE_ ** h) {
             edge **prev = &head_edge;
             while(p){
                 *prev = p->next;
-                F(p);
+                free(p);
                 p = *prev;
                 (*h2)->edges=p;
             }
-            F((*h2)->edges);
+            free((*h2)->edges);
         }
         else{
-            F(head_edge);
+            free(head_edge);
         }
         h2 = &((*h2)->next);
     }
@@ -246,7 +246,7 @@ void DeleteA( struct GRAPH_NODE_ ** h) {
     while(p1){
         *prev1 = p1->next;
         
-        F(p1);
+        free(p1);
         p1 = *prev1;
     }
 }
